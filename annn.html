@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Animated Anniversary</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&family=Dancing+Script:wght@700&family=Great+Vibes&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #e83e8c;
+      --primary-light: #ff8fb3;
+      --primary-dark: #c5377a;
+      --secondary: #6f42c1;
+      --secondary-light: #9a75de;
+      --secondary-dark: #5e35a8;
+      --tertiary: #17a2b8;
+      --light: #fff9fb;
+      --dark: #343a40;
+      --gold: #f5d742;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--light);
+      color: var(--dark);
+      overflow-x: hidden;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    /* 🌟 Enhanced Background Effects */
+    .gradient-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+      z-index: -2;
+      pointer-events: none;
+    }
+    
+    .rose-petals {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+    
+    .petal {
+      position: absolute;
+      font-size: 1.5rem;
+      opacity: 0;
+      animation: falling linear infinite;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transform-origin: center;
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.15));
+    }
+    
+    @keyframes falling {
+      0% {
+        transform: translate(var(--startX), -10%) rotate(0deg) scale(0.8);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.8;
+      }
+      90% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translate(var(--endX), 100vh) rotate(360deg) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    /* ✨ Floating Love Notes with Enhanced Effects */
+    .love-note {
+      position: absolute;
+      background: rgba(255,255,255,0.95);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08), 0 5px 10px rgba(232,62,140,0.08);
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.3rem;
+      opacity: 0;
+      transform: scale(0) rotate(var(--rotation));
+      transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 10;
+      overflow: hidden;
+      border: 1px solid rgba(232,62,140,0.1);
+    }
+    
+    .love-note::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(232,62,140,0.05) 0%, rgba(111,66,193,0.05) 100%);
+      z-index: -1;
+    }
+    
+    .love-note::after {
+      content: "❤️";
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      font-size: 0.8rem;
+      opacity: 0.4;
+    }
+    
+    .love-note.visible {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+
+    /* ✨ Enhanced Header with Parallax Effect */
+    header {
+      text-align: center;
+      padding: 140px 20px 160px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+      transform: translateY(-50px);
+      opacity: 0;
+      animation: floatIn 1.2s ease-out forwards;
+    }
+    
+    @keyframes floatIn {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150"><path fill="rgba(255,255,255,0.05)" d="M40,75 Q75,40 110,75 Q75,110 40,75 Z"></path><path fill="rgba(255,255,255,0.03)" d="M30,75 Q75,30 120,75 Q75,120 30,75 Z"></path></svg>');
+      background-size: 150px;
+      opacity: 0.4;
+      animation: pulse 20s infinite alternate;
+    }
+    
+    @keyframes pulse {
+      0% { opacity: 0.3; transform: scale(1); }
+      100% { opacity: 0.5; transform: scale(1.1); }
+    }
+    
+    .header-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .header-ornament {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: rgba(255,255,255,0.8);
+      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 4.5rem;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 15px rgba(0,0,0,0.25);
+      transform: scale(0.9);
+      transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    header:hover h1 {
+      transform: scale(1);
+    }
+    
+    .header-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      max-width: 700px;
+      margin: 0 auto;
+      transform: translateY(20px);
+      transition: transform 0.6s ease;
+      opacity: 0.9;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+    
+    header:hover .header-subtitle {
+      transform: translateY(0);
+    }
+    
+    .header-date {
+      margin-top: 40px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 3px;
+      opacity: 0.8;
+      transform: translateY(20px);
+      animation: fadeUp 1s 0.8s forwards;
+    }
+    
+    @keyframes fadeUp {
+      to {
+        transform: translateY(0);
+        opacity: 0.9;
+      }
+    }
+    
+    .header-hearts {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" preserveAspectRatio="none"><path d="M0,50 L0,15 Q10,0 20,15 L25,20 L30,15 Q40,0 50,15 L55,20 L60,15 Q70,0 80,15 L85,20 L90,15 Q100,0 110,15 L115,20 L120,15 Q130,0 140,15 L145,20 L150,15 Q160,0 170,15 L175,20 L180,15 Q190,0 200,15 L200,50 Z" fill="rgba(255,255,255,0.5)"></path></svg>');
+      background-size: 200px 50px;
+      opacity: 0.3;
+    }
+
+    /* 💌 Enhanced Love Letter with 3D Effects */
+    .love-letter-container {
+      max-width: 800px;
+      margin: -80px auto 0;
+      position: relative;
+      z-index: 2;
+      perspective: 1500px;
+    }
+    
+    .love-letter {
+      background: white;
+      padding: 70px;
+      border-radius: 10px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1), 0 10px 20px rgba(232,62,140,0.05);
+      position: relative;
+      transform-style: preserve-3d;
+      transform: rotateX(5deg) rotateY(-5deg) rotateZ(-1deg);
+      transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      background-image: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,1) 100%),
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="rgba(232,62,140,0.03)" d="M30,50 Q50,30 70,50 Q50,70 30,50 Z"></path></svg>');
+      background-size: cover, 100px;
+    }
+    
+    .love-letter::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 20px;
+      background: linear-gradient(to bottom, rgba(232,62,140,0.05), rgba(232,62,140,0));
+      border-radius: 10px 10px 0 0;
+    }
+    
+    .love-letter:hover {
+      transform: rotateX(0) rotateY(0) rotateZ(0) translateY(-15px);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.15), 0 15px 25px rgba(232,62,140,0.08);
+    }
+    
+    .letter-content {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      line-height: 1.9;
+      transform: translateZ(30px);
+      color: #4a4a4a;
+    }
+    
+    .letter-content p {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    
+    .letter-content p:first-of-type {
+      font-size: 1.4rem;
+      color: var(--primary-dark);
+      margin-bottom: 2rem;
+    }
+    
+    .signature {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5rem;
+      margin-top: 50px;
+      text-align: right;
+      transform: translateZ(40px);
+      color: var(--primary);
+      position: relative;
+    }
+    
+    .signature::after {
+      content: "";
+      position: absolute;
+      bottom: -15px;
+      right: 0;
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--primary-light));
+    }
+    
+    .wax-seal {
+      position: absolute;
+      bottom: -35px;
+      right: -35px;
+      width: 90px;
+      height: 90px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2.2rem;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15), 0 5px 10px rgba(232,62,140,0.2);
+      transform: rotate(15deg) translateZ(50px);
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+      overflow: hidden;
+    }
+    
+    .wax-seal::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+    }
+    
+    .wax-seal:hover {
+      transform: rotate(0deg) scale(1.1) translateZ(60px);
+      background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+    }
+    
+    .letter-decoration {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      font-size: 1.5rem;
+      opacity: 0.15;
+      transform: translateZ(20px);
+    }
+    
+    .letter-decoration:nth-child(1) {
+      top: 30px;
+      left: 30px;
+    }
+    
+    .letter-decoration:nth-child(2) {
+      bottom: 30px;
+      left: 30px;
+    }
+
+    /* 🌟 Timeline of Love */
+    .timeline {
+      max-width: 900px;
+      margin: 100px auto 50px;
+      position: relative;
+      padding: 0 20px;
+    }
+    
+    .timeline-title {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 70px;
+      color: var(--primary);
+      position: relative;
+    }
+    
+    .timeline-title::after {
+      content: "";
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary-light), var(--secondary-light));
+    }
+    
+    .timeline-line {
+      position: absolute;
+      top: 140px;
+      bottom: 0;
+      left: 50%;
+      width: 4px;
+      background: linear-gradient(to bottom, var(--primary-light), var(--secondary-light));
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 100px;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
+    }
+    
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .timeline-item:nth-child(odd) {
+      padding-right: calc(50% + 30px);
+      text-align: right;
+    }
+    
+    .timeline-item:nth-child(even) {
+      padding-left: calc(50% + 30px);
+    }
+    
+    .timeline-date {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      color: var(--primary);
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    
+    .timeline-dot {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border: 4px solid var(--primary);
+      border-radius: 50%;
+      transform: translate(-50%, 0);
+      transition: all 0.3s ease;
+    }
+    
+    .timeline-item:hover .timeline-dot {
+      transform: translate(-50%, 0) scale(1.3);
+      background: var(--primary-light);
+    }
+    
+    .timeline-content {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+    
+    .timeline-item:hover .timeline-content {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    }
+    
+    .timeline-title-small {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: var(--secondary);
+    }
+    
+    .timeline-text {
+      line-height: 1.8;
+      color: #666;
+    }
+
+    /* 📸 Enhanced Memory Gallery with Parallax */
+    .gallery {
+      padding: 100px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      transform-style: preserve-3d;
+    }
+    
+    .gallery-title {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 70px;
+      color: var(--primary);
+      position: relative;
+    }
+    
+    .gallery-title::after {
+      content: "";
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary-light), var(--secondary-light));
+    }
+    
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 40px;
+    }
+    
+    .memory-card {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+      height: 400px;
+      transform-style: preserve-3d;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    
+    .memory-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .memory-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      z-index: 1;
+    }
+    
+    .memory-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+      opacity: 0.3;
+      z-index: 1;
+      transition: opacity 0.6s ease;
+    }
+    
+    .memory-card:hover {
+      transform: translateY(-15px) rotateX(5deg) rotateY(5deg);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2), 0 10px 20px rgba(111,66,193,0.2);
+    }
+    
+    .memory-card:hover::before {
+      opacity: 0.2;
+    }
+    
+    .memory-card:hover::after {
+      opacity: 0.5;
+    }
+    
+    .memory-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    
+    .memory-card:hover img {
+      transform: scale(1.1);
+    }
+    
+    .memory-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+      color: white;
+      padding: 40px 20px 20px;
+      font-family: 'Playfair Display', serif;
+      transform: translateY(70%) translateZ(20px);
+      transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 2;
+    }
+    
+    .memory-card:hover .memory-caption {
+      transform: translateY(0) translateZ(40px);
+    }
+    
+    .memory-date {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      opacity: 0.8;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+    
+    .memory-title {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+    
+    .memory-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s 0.1s ease;
+    }
+    
+    .memory-card:hover .memory-text {
+      opacity: 0.9;
+      transform: translateY(0);
+    }
+
+    /* 🎁 Love Counter Section */
+    .counter-section {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      padding: 100px 20px;
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-top: 100px;
+      clip-path: polygon(0 15%, 100% 0, 100% 85%, 0 100%);
+    }
+    
+    .counter-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="rgba(255,255,255,0.05)" d="M30,50 Q50,30 70,50 Q50,70 30,50 Z"></path></svg>');
+      background-size: 100px;
+      opacity: 0.2;
+    }
+    
+    .counter-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .counter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .counter-item {
+      padding: 20px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transform: translateY(50px);
+      opacity: 0;
+      transition: all 0.8s ease;
+    }
+    
+    .counter-item.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .counter-number {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    
+    .counter-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+    }
+
+    /* 💝 Gift Section */
+    .gift-section {
+      max-width: 1000px;
+      margin: 100px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+    
+    .gift-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+    
+    .gift-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      margin-bottom: 50px;
+      color: var(--dark);
+    }
+    
+    .gift-box {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+      cursor: pointer;
+      perspective: 1000px;
+    }
+    
+    .gift-box-lid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 30px;
+      background: linear-gradient(to bottom, var(--primary-dark), var(--primary));
+      border-radius: 5px 5px 0 0;
+      transform-origin: bottom;
+      transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 2;
+    }
+    
+    .gift-box-body {
+      position: absolute;
+      top: 30px;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 30px);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      border-radius: 0 0 5px 5px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .gift-ribbon {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 30px;
+      height: 200px;
+      background: var(--gold);
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+    
+    .gift-ribbon::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, rgba(0,0,0,0.1), transparent, rgba(0,0,0,0.1));
+    }
+    
+    .gift-ribbon-h {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 200px;
+      height: 30px;
+      background: var(--gold);
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+    
+    .gift-box.open .gift-box-lid {
+      transform: rotateX(-110deg);
+    }
+    
+    .gift-surprise {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      font-size: 3rem;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 3;
+    }
+    
+    .gift-box.open .gift-surprise {
+      transform: translate(-50%, -100%) scale(1.5);
+    }
+    
+    .gift-message {
+      margin-top: 50px;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.5rem;
+      color: var(--primary);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+    
+    .gift-message.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 💖 Enhanced Animated Heart Button */
+    .heart-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15), 0 5px 10px rgba(232,62,140,0.3);
+  z-index: 100;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: pulseIn 1s ease-out 1s;
+  overflow: hidden;
+}
+    @keyframes pulseIn {
+      0% { transform: scale(0); }
+      70% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    
+    .heart-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2), 0 8px 15px rgba(232,62,140,0.4);
+    }
+    
+    .heart-btn:active {
+      transform: scale(0.9);
+    }
+    
+    .heart-btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .heart-btn:hover::before {
+      opacity: 1;
+    }
+    
+    /* 🔄 Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 3.5rem;
+      }
+      
+      .header-subtitle {
+        font-size: 1.4rem;
+      }
+      
+      .love-letter {
+        padding: 40px 30px;
+      }
+      
+      .timeline-line {
+        left: 30px;
+      }
+      
+      .timeline-item:nth-child(odd),
+      .timeline-item:nth-child(even) {
+        padding-left: 70px;
+        padding-right: 0;
+        text-align: left;
+      }
+      
+      .timeline-dot {
+        left: 30px;
+      }
+      
+      .memory-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .wax-seal {
+        bottom: -30px;
+        right: -10px;
+        width: 70px;
+        height: 70px;
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2.8rem;
+      }
+      
+      .header-subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .letter-content {
+        font-size: 1.1rem;
+      }
+      
+      .signature {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Effects -->
+  <div class="gradient-bg"></div>
+  <div class="rose-petals"></div>
+  
+  <!-- Floating Love Notes -->
+  <div class="love-notes-container"></div>
+  
+  <!-- Enhanced Header -->
+  <header>
+    <div class="header-content">
+      <div class="header-ornament">❦</div>
+      <h1>Our Anniversary</h1>
+      <p class="header-subtitle">Celebrating our journey of love, laughter, and countless memories</p>
+      <div class="header-date">APRIL 24, 2025</div>
+    </div>
+    <div class="header-hearts"></div>
+  </header>
+  
+  <!-- Enhanced Love Letter -->
+  <div class="love-letter-container">
+    <div class="love-letter">
+      <div class="letter-decoration">❦</div>
+      <div class="letter-decoration">❧</div>
+      <div class="letter-content">
+        <p>My dearest Shundu,</p>
+        <p>As we celebrate another year together, I find myself reflecting on the beautiful journey we've shared. Every moment with you has been a gift, every challenge overcome has made us stronger, and every smile we've shared has made my heart fuller.</p>
+        <p>I remember the day we first met, how time seemed to stand still when our eyes met. Little did I know that moment would be the beginning of the most wonderful adventure of my life. Your kindness, your strength, and your unwavering support have been my anchor through every storm.</p>
+        <p>They say love is not found, it's built. We've been architects of our own happiness, carefully constructing a life filled with joy, understanding, and profound connection. I cherish the home we've created, not just the physical space, but the emotional sanctuary we've built together.</p>
+        <p>As we look toward our future, I'm filled with excitement for all the memories we have yet to create, the challenges we'll face hand in hand, and the quiet moments of simply being together that I treasure most.</p>
+        <p>Today and always, my love for you continues to grow deeper with each passing day.</p>
+        <div class="signature">Forever Yours Akshay</div>
+      </div>
+      <div class="wax-seal">❤</div>
+    </div>
+  </div>
+  
+  <!-- Timeline of Love -->
+  <section class="timeline">
+    <h2 class="timeline-title">Our Journey Together</h2>
+    <div class="timeline-line"></div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">SEPT 29, 2023</div>
+      <div class="timeline-content">
+        <h3 class="timeline-title-small">When We First Met</h3>
+        <p class="timeline-text">A chance encounter that changed our lives forever. Who knew that a coffee spill would lead to the most important conversation of our lives?</p>
+      </div>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">APRIL 24, 2024</div>
+      <div class="timeline-content">
+        <h3 class="timeline-title-small">Officially mine</h3>
+        <p class="timeline-text">That magical evening under the tree at the  college. I still remember how beautiful you looked and how we talked until the class dispersed.</p>
+      </div>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">OCTOBER 5, 2024</div>
+      <div class="timeline-content">
+        <h3 class="timeline-title-small">1st trip </h3>
+        <p class="timeline-text">The day you kissed me hugged mee that makes our body to be in waterfall where lust and love is falling.</p>
+      </div>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">AUGUST 10, 2024</div>
+      <div class="timeline-content">
+        <h3 class="timeline-title-small">Our 1st kiss experience</h3>
+        <p class="timeline-text">you are such a silly lovely who cried in a very little things and also when i kiss that little bouncy cheeks.</p>
+      </div>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">APRIL 24, 2025</div>
+      <div class="timeline-content">
+        <h3 class="timeline-title-small">Anniversery</h3>
+        <p class="timeline-text">Looking back on a year of growth, challenges overcome, and a love that continues to deepen with each passing day.</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Memory Gallery -->
+  <section class="gallery">
+    <h2 class="gallery-title">Our Cherished Memories</h2>
+    <div class="memory-grid">
+      <div class="memory-card">
+        <img src="her/ghibli.png" alt="Date">
+        <div class="memory-caption">
+          <div class="memory-date">APRIL 24, 2024</div>
+          <h3 class="memory-title">1st day sharing my feelings</h3>
+          <p class="memory-text">That magical evening when we knew this was something special. Your talked under the tree is etched in my memory forever.</p>
+        </div>
+      </div>
+      
+      <div class="memory-card">
+        <img src="her/signal-2025-04-01-173817_002.png" alt="Birthday">
+        <div class="memory-caption">
+          <div class="memory-date">AUGUST 09, 2024</div>
+          <h3 class="memory-title">Birthday Gift</h3>
+          <p class="memory-text">you planned suprise cake cutting for my birthday that i have been never imagind.</p>
+        </div>
+      </div>
+      
+      <div class="memory-card">
+        <img src="her/signal-2025-03-31-150508_002.png" alt="IV">
+        <div class="memory-caption">
+          <div class="memory-date">OCTOBER 5, 2024</div>
+          <h3 class="memory-title">First hug and kiss</h3>
+          <p class="memory-text">When we conquered that mountain peak together, discovering that there's nothing we can't achieve as a couple.</p>
+        </div>
+      </div>
+      
+      <div class="memory-card">
+        <img src="her/signal-2025-03-31-215940_002.jpeg" alt="Cooking Together">
+        <div class="memory-caption">
+          <div class="memory-date">FEBRUARY 14, 2023</div>
+          <h3 class="memory-title">A mad day</h3>
+          <p class="memory-text">That day was an unforgettable day that we wake through the college multiple time and got mad at each other and also we rode bike for few minutes .</p>
+        </div>
+      </div>
+      
+      <div class="memory-card">
+        <img src="her/signal-2025-03-31-150433_002.png" alt="Dance Party">
+        <div class="memory-caption">
+          <div class="memory-date">DECEMBER 25, 2024</div>
+          <h3 class="memory-title">New Year's Dance</h3>
+          <p class="memory-text">1st christmas with my sweetheart as ina relation.</p>
+        </div>
+      </div>
+      
+      <div class="memory-card">
+        <img src="her/signal-2025-03-31-215915_002.png" alt="Picnic Day">
+        <div class="memory-caption">
+          <div class="memory-date">AUGUST 10, 2024</div>
+          <h3 class="memory-title">FIRST Kiss</h3>
+          <p class="memory-text">The gift that you gave me as the wonderful and it melt my heart that day was our 1st kiss .</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Love Counter Section -->
+  <section class="counter-section">
+    <h2 class="counter-title">Our Love By The Numbers</h2>
+    <div class="counter-grid">
+      <div class="counter-item">
+        <div class="counter-number" id="days-counter">574 </div>
+        <div class="counter-text">Days Together</div>
+      </div>
+      
+      <div class="counter-item">
+        <div class="counter-number" id="dates-counter">574</div>
+        <div class="counter-text">Date Nights</div>
+      </div>
+      
+      <div class="counter-item">
+        <div class="counter-number" id="adventures-counter">1</div>
+        <div class="counter-text">Adventures</div>
+      </div>
+      
+      <div class="counter-item">
+        <div class="counter-number" id="kisses-counter">∞</div>
+        <div class="counter-text">Kisses</div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Gift Section -->
+  <section class="gift-section">
+    <h2 class="gift-title">A Special Gift For You</h2>
+    <p class="gift-subtitle">Click to unwrap a token of my love</p>
+    
+    <div class="gift-box">
+      <div class="gift-box-lid"></div>
+      <div class="gift-box-body"></div>
+      <div class="gift-ribbon"></div>
+      <div class="gift-ribbon-h"></div>
+      <div class="gift-surprise">🌟</div>
+    </div>
+    
+    <p class="gift-message" id="gift-message">The greatest gift is the love we share every day. Here's to many more years of joy, growth, and adventure together!</p>
+  </section>
+  
+  <!-- Heart Button -->
+  <button class="heart-btn">❤</button>
+  
+  <!-- Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Create falling petals
+      const petalSymbols = ['🌸', '❤️', '💕', '✨', '💫', '💐', '🌷'];
+      const petalsContainer = document.querySelector('.rose-petals');
+      const numberOfPetals = 20;
+      
+      for (let i = 0; i < numberOfPetals; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        petal.textContent = petalSymbols[Math.floor(Math.random() * petalSymbols.length)];
+        
+        const startX = Math.random() * 100;
+        const endX = startX + (Math.random() * 50 - 25);
+        const animationDuration = Math.random() * 15 + 10;
+        
+        petal.style.setProperty('--startX', `${startX}vw`);
+        petal.style.setProperty('--endX', `${endX}vw`);
+        petal.style.animationDuration = `${animationDuration}s`;
+        petal.style.animationDelay = `${Math.random() * 20}s`;
+        
+        petalsContainer.appendChild(petal);
+      }
+      
+      // Create love notes
+      const loveNotes = [
+        "Every day with you is my favorite day.",
+        "Your smile is still my favorite sight in the world.",
+        "You make ordinary moments extraordinary.",
+        "I fall in love with you a little more each day.",
+        "You're my best friend, my confidant, my everything.",
+        "Your laugh is still my favorite sound.",
+        "Home is wherever I'm with you."
+      ];
+      
+      const notesContainer = document.querySelector('.love-notes-container');
+      
+      loveNotes.forEach((note, index) => {
+        setTimeout(() => {
+          const noteElem = document.createElement('div');
+          noteElem.className = 'love-note';
+          noteElem.textContent = note;
+          
+          const rotation = Math.random() * 6 - 3;
+          noteElem.style.setProperty('--rotation', `${rotation}deg`);
+          
+          noteElem.style.top = `${Math.random() * 70 + 15}%`;
+          noteElem.style.left = `${Math.random() * 70 + 15}%`;
+          noteElem.style.maxWidth = '250px';
+          noteElem.style.transform = `scale(0) rotate(${rotation}deg)`;
+          noteElem.style.zIndex = index + 5;
+          
+          notesContainer.appendChild(noteElem);
+          
+          setTimeout(() => {
+            noteElem.classList.add('visible');
+          }, 100);
+          
+        }, (index + 1) * 3000);
+      });
+      
+      // Intersection Observer for animations
+      const observerOptions = {
+        threshold: 0.2
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, observerOptions);
+      
+      document.querySelectorAll('.timeline-item, .memory-card, .counter-item').forEach(item => {
+        observer.observe(item);
+      });
+      
+      // Gift box interaction
+      const giftBox = document.querySelector('.gift-box');
+      const giftMessage = document.querySelector('#gift-message');
+      
+      giftBox.addEventListener('click', () => {
+        giftBox.classList.toggle('open');
+        
+        if (giftBox.classList.contains('open')) {
+          setTimeout(() => {
+            giftMessage.classList.add('visible');
+          }, 800);
+        } else {
+          giftMessage.classList.remove('visible');
+        }
+      });
+      
+      // Heart button effect
+      const heartBtn = document.querySelector('.heart-btn');
+      
+      heartBtn.addEventListener('click', () => {
+        // Create heart explosion
+        for (let i = 0; i < 20; i++) {
+          const heart = document.createElement('div');
+          heart.className = 'petal';
+          heart.textContent = '❤️';
+          heart.style.fontSize = `${Math.random() * 1 + 1}rem`;
+          
+          const startX = 50;
+          const endX = startX + (Math.random() * 200 - 100);
+          const animationDuration = Math.random() * 3 + 2;
+          
+          heart.style.setProperty('--startX', `${startX}vw`);
+          heart.style.setProperty('--endX', `${endX}vw`);
+          heart.style.position = 'fixed';
+          heart.style.bottom = '30px';
+          heart.style.right = '30px';
+          heart.style.animationDuration = `${animationDuration}s`;
+          heart.style.opacity = '1';
+          heart.style.zIndex = '99';
+          
+          document.body.appendChild(heart);
+          
+          setTimeout(() => {
+            document.body.removeChild(heart);
+          }, animationDuration * 1000);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
